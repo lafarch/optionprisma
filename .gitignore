@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+*.egg-info/
+
+# Data files (we'll commit a template, not actual results)
+results.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
