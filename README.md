@@ -227,19 +227,15 @@ Use `uvicorn` directly for production deployments:
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License.
 
-## 👨‍💻 Author
-
-Your Name - [Your Portfolio/LinkedIn]
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Black-Scholes-Merton model for option pricing
 - FastAPI documentation and community
