@@ -1,17 +1,17 @@
 # OptionPrisma: Notas Completas del Proyecto 📚
 
 ## Índice
-1. [Teoría Financiera: Opciones y Pricing](#teoria-financiera)
-2. [Monte Carlo Simulation](#monte-carlo)
-3. [Black-Scholes Model](#black-scholes)
-4. [Arquitectura del Proyecto](#arquitectura)
-5. [Async Programming en Python](#async-programming)
-6. [Estructura de Archivos Detallada](#estructura-archivos)
-7. [Flujo de Datos Completo](#flujo-datos)
+1. [Teoría Financiera: Opciones y Pricing](#1-teoria-financiera-opciones-y-pricing)
+2. [Monte Carlo Simulation](#2-monte-carlo-simulation)
+3. [Black-Scholes Model](#3-black-scholes-model)
+4. [Arquitectura del Proyecto](#4-arquitectura-del-proyecto)
+5. [Async Programming en Python](#5-async-programming-en-python)
+6. [Estructura de Archivos Detallada](#6-estructura-de-archivos-detallada)
+7. [Flujo de Datos Completo](#7-flujo-de-datos-completo)
 
 ---
 
-## 1. Teoría Financiera: Opciones y Pricing {#teoria-financiera}
+## 1. Teoría Financiera: Opciones y Pricing
 
 ### ¿Qué es una Opción?
 
@@ -61,7 +61,7 @@ El precio de una opción NO es simplemente `S₀ - K` porque:
 
 ---
 
-## 2. Monte Carlo Simulation {#monte-carlo}
+## 2. Monte Carlo Simulation
 
 ### Concepto Fundamental
 
@@ -92,8 +92,7 @@ Esto es el *drift ajustado por riesgo*:
 
 ---
 
-# 3. Black-Scholes Model {#black-scholes}
-
+# 3. Black-Scholes Model
 ### Historia
 
 Desarrollado por Fischer Black, Myron Scholes y Robert Merton (1973). Revolucionó las finanzas y ganó el Premio Nobel en 1997.
@@ -117,7 +116,7 @@ Desarrollado por Fischer Black, Myron Scholes y Robert Merton (1973). Revolucion
 
 ---
 
-# 5. Async Programming {#async-programming}
+# 5. Async Programming 
 
 ### Cosas a saber
 
@@ -262,7 +261,7 @@ def black_scholes_price(...):
 
 ---
 
-## 4. Arquitectura del Proyecto {#arquitectura}
+## 4. Arquitectura del Proyecto 
 
 ### Patrón de Diseño: Separation of Concerns
 
@@ -310,7 +309,7 @@ Cambiar de JSON a PostgreSQL:
 
 ---
 
-## 5. Async Programming en Python {#async-programming}
+## 5. Async Programming en Python
 
 ### El Problema del Blocking
 
@@ -407,7 +406,7 @@ await       → Solo dentro de async def
 
 ---
 
-## 6. Estructura de Archivos Detallada {#estructura-archivos}
+## 6. Estructura de Archivos Detallada 
 
 ### `app/config.py`
 ```python
@@ -578,7 +577,7 @@ async def validate_inputs_async():
 
 ---
 
-## 7. Flujo de Datos Completo {#flujo-datos}
+## 7. Flujo de Datos Completo 
 
 ### Ejemplo: Crear una simulación
 
