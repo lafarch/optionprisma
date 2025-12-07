@@ -2,7 +2,7 @@
 
 A high-performance asynchronous API for European option pricing using Monte Carlo simulation.
 
-## 🎯 Features
+##  Features
 
 - ⚡ **Async FastAPI** for concurrent request handling
 - 📈 **Monte Carlo Simulation** for European option pricing
@@ -10,17 +10,29 @@ A high-performance asynchronous API for European option pricing using Monte Carl
 - 📊 **Greeks Calculation** (Delta, Gamma, Vega, Theta, Rho)
 - ✅ **Full CRUD Operations** with JSON persistence
 - 🧪 **Comprehensive Testing** (unit, integration, property-based)
-- 🐳 **Docker Ready** for easy deployment
+# OptionPrisma 
 
-## 🚀 Quick Start
+A high-performance asynchronous API for European option pricing using Monte Carlo simulation.
 
-### Prerequisites
+##  Features
+
+-  **Async FastAPI** for concurrent request handling
+-  **Monte Carlo** for European option pricing
+- **Black-Scholes Model** for analytical comparison
+- **Greeks Calculation** (Delta, Gamma, Vega, Theta, Rho)
+- **Full CRUD Operations** with JSON persistence
+- **Comprehensive Testing** (unit, integration, property-based)
+- **Docker Ready** for easy deployment
+
+# Quick Start
+
+## Prerequisites
 
 - Python 3.11+
 - WSL2 (Ubuntu) or Linux/macOS
 - Git
 
-### Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -35,21 +47,18 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Running the API
+## Running the API
 
 **Development mode (recommended):**
+
 ```bash
 fastapi dev app/main.py
 ```
 
 **Alternative (explicit control):**
+
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-**Production mode:**
-```bash
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
 > **Note**: `fastapi dev` is a development-only command. For production, always use `uvicorn` directly.
@@ -58,7 +67,7 @@ Visit:
 - **Interactive API Docs**: http://localhost:8000/docs
 - **Alternative Docs**: http://localhost:8000/redoc
 
-## 📖 Usage Examples
+## Usage Examples
 
 ### Python
 
@@ -81,17 +90,13 @@ response = requests.post(
 
 result = response.json()
 print(f"Option Price: ${result['option_price']:.2f}")
-print(f"Black-Scholes: ${result['black_scholes_price']:.2f}")
+print(f"Black-Scholes: {result['black_scholes_price']:.2f}")
 print(f"Delta: {result['greeks']['delta']:.4f}")
 ```
 
 ### cURL
 
 ```bash
-# Health check
-curl http://localhost:8000/
-
-# Create simulation
 curl -X POST http://localhost:8000/simulations \
   -H "Content-Type: application/json" \
   -d '{
@@ -102,22 +107,17 @@ curl -X POST http://localhost:8000/simulations \
     "risk_free_rate": 0.05,
     "option_type": "call"
   }'
-
-# List all simulations
-curl http://localhost:8000/simulations
-
-# Get specific simulation
-curl http://localhost:8000/simulations/{simulation_id}
-
-# Delete simulation
-curl -X DELETE http://localhost:8000/simulations/{simulation_id}
 ```
 
-## 🧪 Testing
+# More
 
-```bash
-# Run all tests
-pytest -v
+This project is licensed under the MIT License.
+
+## Authors
+
+- Black-Scholes-Merton model for option pricing
+- FastAPI documentation and community
+- Quantitative finance resources
 
 # Run with coverage report
 pytest --cov=app --cov-report=html

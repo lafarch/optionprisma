@@ -1,8 +1,8 @@
 # OptionPrisma - Quick Reference Guide 🚀
-
+# OptionPrisma - Quick Reference Guide
 ## 📋 Comandos Esenciales
 
-```bash
+## Comandos Esenciales
 # Activar entorno virtual
 source venv/bin/activate
 
@@ -24,7 +24,6 @@ echo '[]' > data/results.json
 
 ---
 
-## 🔑 Conceptos Clave en 5 Minutos
 
 ### Option Pricing Formula (Monte Carlo)
 ```
@@ -54,7 +53,6 @@ Rho (ρ):    ∂C/∂r    → Sensibilidad a tasas
 
 ---
 
-## 📁 Mapa Mental de Archivos
 
 ```
 app/
@@ -73,7 +71,6 @@ tests/
 
 ---
 
-## 🔄 Flujo de Request (Simplified)
 
 ```
 Client
@@ -103,7 +100,6 @@ FastAPI (main.py)
 
 ---
 
-## 🎯 Async vs Sync Decision Tree
 
 ```
 ┌─────────────────────────────┐
@@ -141,7 +137,6 @@ async def endpoint():
 
 ---
 
-## 🧪 Testing Quick Reference
 
 ```python
 # Unit test (Monte Carlo logic)
@@ -163,7 +158,6 @@ def test_create_simulation(client):
 
 ---
 
-## 🐛 Common Issues & Solutions
 
 ### Issue 1: "Module not found"
 ```bash
@@ -192,7 +186,6 @@ pytest tests/test_persistence.py -v -s
 
 ---
 
-## 📊 API Endpoints Cheat Sheet
 
 ```bash
 # Health Check
@@ -233,7 +226,6 @@ Response 204: (no body) or 404
 
 ---
 
-## 💡 Interview Talking Points
 
 ### "What's interesting about this project?"
 
@@ -252,7 +244,6 @@ Response 204: (no body) or 404
 
 ---
 
-## 🎓 Key Formulas to Memorize
 
 ### Geometric Brownian Motion
 ```
@@ -276,7 +267,6 @@ C - P = S - K*e^(-rT)
 
 ---
 
-## 🔧 Development Workflow
 
 ```bash
 # 1. Start coding session
@@ -304,7 +294,6 @@ git push
 
 ---
 
-## 📚 Where to Learn More
 
 ### Priority 1 (Must Read):
 1. FastAPI docs: https://fastapi.tiangolo.com
@@ -318,20 +307,10 @@ git push
 
 ---
 
-## ✅ Daily Checklist
 
 Before presenting this project:
 
 - [ ] Can explain Monte Carlo simulation in 2 minutes
 - [ ] Can explain Black-Scholes in 2 minutes
-- [ ] Can explain async vs sync in Python
-- [ ] Can demo the API live (with fastapi dev)
-- [ ] Can run all tests successfully
-- [ ] Can explain each Greek
-- [ ] Can describe the architecture
-- [ ] Have the project on GitHub with good README
 
----
-
-**Keep this file handy!** 🚀
 Reference it whenever you need a quick reminder.

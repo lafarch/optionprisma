@@ -67,152 +67,115 @@ El precio de una opción NO es simplemente `S₀ - K` porque:
 
 **Monte Carlo** es un método que usa simulaciones aleatorias para resolver problemas complejos.
 
-**La idea:**
-```
+### Idea:
+
 1. Simular muchos posibles futuros del precio de la acción
 2. Calcular el payoff en cada escenario
 3. Promediar todos los payoffs
 4. Descontar al valor presente
-```
 
-### Matemática Detrás
+### Matemática Detallada
 
-#### Geometric Brownian Motion (GBM)
+**Geometric Brownian Motion (GBM)**
 
 Las acciones se modelan como un proceso estocástico:
 
-```
-dS = μS dt + σS dW
-
-Donde:
-- μ = rendimiento esperado (drift)
-- σ = volatilidad
-- dW = Movimiento Browniano (ruido aleatorio)
+```math
+dS = mu S dt + sigma S dW
 ```
 
-**Solución analítica:**
-```
-S_T = S_0 * exp((r - 0.5σ²)T + σ√T*Z)
+### Por qué el término (r - 0.5 sigma^2)
 
-Donde:
-- Z ~ N(0,1) (normal estándar)
-- r = risk-free rate (usamos esto en lugar de μ en pricing neutral al riesgo)
-```
+Esto es el *drift ajustado por riesgo*:
+- `mu` es el rendimiento esperado (drift)
+- `sigma` es la volatilidad
 
-#### ¿Por qué el término (r - 0.5σ²)?
+---
 
-Este es el **drift ajustado por riesgo**:
-- `r` es el rendimiento esperado en mundo risk-neutral
-- `-0.5σ²` es la **corrección de Itô** (por la naturaleza del proceso estocástico)
+# 3. Black-Scholes Model {#black-scholes}
 
-### Implementación en el Código
+### Historia
 
-**Archivo: `app/monte_carlo.py`**
+Desarrollado por Fischer Black, Myron Scholes y Robert Merton (1973). Revolucionó las finanzas y ganó el Premio Nobel en 1997.
 
-```python
-def price_european_option(...):
-    # 1. Generar N simulaciones de Z ~ N(0,1)
-    Z = np.random.standard_normal(num_simulations)
-    
-    # 2. Calcular precios terminales usando GBM
-    drift = (risk_free_rate - 0.5 * volatility**2) * time_to_maturity
-    diffusion = volatility * np.sqrt(time_to_maturity) * Z
-    terminal_prices = spot_price * np.exp(drift + diffusion)
-    
-    # 3. Calcular payoffs
-    if option_type == "call":
-        payoffs = np.maximum(terminal_prices - strike_price, 0)
-    else:  # put
-        payoffs = np.maximum(strike_price - terminal_prices, 0)
-    
-    # 4. Descontar al valor presente
-    discount_factor = np.exp(-risk_free_rate * time_to_maturity)
-    discounted_payoffs = payoffs * discount_factor
-    
-    # 5. Promedio = precio de la opción
-    option_price = np.mean(discounted_payoffs)
-```
+### Fórmula Analítica
 
-**¿Por qué NumPy?**
-- Operaciones **vectorizadas** (100x más rápido que loops)
-- Manejo eficiente de arrays grandes
-- Funciones matemáticas optimizadas
+- CALL y PUT prices
 
-### Convergencia y Error
+---
 
-El **Standard Error** nos dice qué tan confiable es nuestra estimación:
+# 4. Arquitectura del Proyecto {#arquitectura}
 
-```
-SE = σ_payoffs / √N
+### Partes del Proyecto
 
-Donde:
-- σ_payoffs = desviación estándar de los payoffs
-- N = número de simulaciones
-```
+- Entradas de usuario
+- Simulaciones
+- Black-Scholes (analytical)
+- Async Programming in Python
+- Estructura de Archivos
+- Flujo de Datos: ingestion → compute → store
 
-**Intervalo de Confianza 95%:**
-```
-Price ± 1.96 * SE
-```
+---
 
-**Ejemplo:**
-```
-Price: $10.45
-SE: $0.03
-IC 95%: [$10.39, $10.51]
+# 5. Async Programming {#async-programming}
 
-Interpretación: 
-"Estamos 95% seguros de que el precio real está entre $10.39 y $10.51"
+### Cosas a saber
+
+- Non-blocking I/O operations
+- Concurrent request handling
+- Async file operations with `aiofiles`
+
+---
+
+# 6. Matematica Detallada {#matematica-detal}
+
+### Geometric Brownian Motion (GBM)
+
+Las acciones se modelan como un proceso estocástico:
+
+```math
+dS = mu S dt + sigma S dW
 ```
 
 ---
 
-## 3. Black-Scholes Model {#black-scholes}
+# 7. Flujo de Datos Completo
 
-### Historia
+- Spot Price
+- Strike Price
+- Time to Maturity
+- Volatility
+- Risk-free rate
+- Option type
 
-Desarrollado por Fischer Black, Myron Scholes y Robert Merton (1973).
-Revolucionó las finanzas y ganó el Premio Nobel en 1997.
+---
 
-### Fórmula Analítica
+# 8. Desarrollo y Productividad {#desarrollo-productividad}
 
-Para una **CALL**:
-```
-C = S₀*N(d₁) - K*e^(-rT)*N(d₂)
+- Use `fastapi dev` para el mejor developer experience:
+    - Auto-reload on code changes
+    - Better error messages
+    - Automatic configuration
 
-Donde:
-d₁ = [ln(S₀/K) + (r + σ²/2)T] / (σ√T)
-d₂ = d₁ - σ√T
-N(x) = función de distribución acumulada normal estándar
-```
+---
 
-Para una **PUT**:
-```
-P = K*e^(-rT)*N(-d₂) - S₀*N(-d₁)
-```
+# 9. Testing
 
-### Supuestos del Modelo
+- Run all tests: `pytest -v`
 
-⚠️ **Importantes (y a menudo violados en la realidad):**
+---
 
-1. **Mercados eficientes**: No hay costos de transacción ni impuestos
-2. **Volatilidad constante**: σ no cambia con el tiempo (falso en realidad)
-3. **Log-normal**: Los precios siguen una distribución log-normal
-4. **Sin dividendos**: La acción no paga dividendos
-5. **Tasa constante**: r no cambia
-6. **Trading continuo**: Puedes comprar/vender en cualquier momento
+# 10. Contribuciones
 
-### ¿Por qué usamos ambos (MC y BS)?
+- Create an issue or submit a Pull Request.
 
-| Monte Carlo | Black-Scholes |
-|-------------|---------------|
-| ✅ Muy flexible | ❌ Solo opciones simples |
-| ✅ Opciones complejas | ✅ Extremadamente rápido |
-| ❌ Más lento | ✅ Precio exacto |
-| ✅ Cualquier distribución | ❌ Solo log-normal |
+---
 
-**En nuestro proyecto:**
-- **MC**: Para aprender el método general
+# Apéndice: Recursos Claves
+
+- Black-Scholes-Merton model for option pricing
+- FastAPI documentation
+- Quantitative finance references
 - **BS**: Para validar que MC funciona correctamente
 
 ### The Greeks (Las Griegas)
