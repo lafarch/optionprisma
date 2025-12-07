@@ -103,7 +103,7 @@ Desarrollado por Fischer Black, Myron Scholes y Robert Merton (1973). Revolucion
 
 ---
 
-# 4. Arquitectura del Proyecto {#arquitectura}
+# 4. Arquitectura del Proyecto
 
 ### Partes del Proyecto
 
@@ -126,7 +126,7 @@ Desarrollado por Fischer Black, Myron Scholes y Robert Merton (1973). Revolucion
 
 ---
 
-# 6. Matematica Detallada {#matematica-detal}
+# 6. Matematica Detallada
 
 ### Geometric Brownian Motion (GBM)
 
@@ -149,7 +149,7 @@ dS = mu S dt + sigma S dW
 
 ---
 
-# 8. Desarrollo y Productividad {#desarrollo-productividad}
+# 8. Desarrollo y Productividad
 
 - Use `fastapi dev` para el mejor developer experience:
     - Auto-reload on code changes
